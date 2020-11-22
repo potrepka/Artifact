@@ -12,35 +12,35 @@ images from our original image set. The effects chosen are:
   - Posterize
   - Monochrome (dither from grayscale)
 The model, as it is, was not found to be very effective at colorizing images.
-Therefore, for the sake of simplicity, we use grayscale images as the original
-image set when training on the monochrome effect.
+Therefore, we use grayscale images as the original image set when training on
+the monochrome effect.
 
 Next, we train a CycleGAN model using our modified and original image sets.
 Hyperparameters to note, which may differ from the original CycleGAN paper, are
 as follows:
   - The generator encoder and decoder use 32, 64, 128 filters instead of 64,
-  128, 256. This change was made to satisfy space constraints in the GPU.
+  128, 256. This change was made to satisfy GPU space constraints.
   - The discriminator loss is not scaled by 0.5. Better results were found when
   the discriminator loss was left unscaled.
-  - The number of residual layers is 9, as is recommended for images of size
-  256 by 256.
+  - The number of residual layers is 9, as is recommended by the original paper
+  for images of size 256 by 256.
   - The number of training iterations is 160,000. The number of validation
-  iterations is 40,000.
+  iterations is 40,000. Training is split into 8 epochs.
 
 Finally, once training is complete, we feed a modified image into our model to
-obtain a new (fake original) image. You can make observations of artifacts in
-your output image and tune the model as you like. Common artifacts are tiling,
-light and dark patches, and color grading effects. Some things to note are:
-  - Better results were found when using random pairs of images rather than
-  associated pairs of images. See `--shuffle` below.
-  - Validation loss is not a clear indicator of the presence or lack thereof of
-  artifacts.
+obtain a new (fake original) image. Feel free to make observations of artifacts
+in your output image and tune the model as you like. Common artifacts are
+tiling, light and dark patches, and color distortion. Please note:
+  - Using random pairs of images rather than associated pairs yielded better
+  results. See `--shuffle` below.
+  - Validation loss is not a clear indicator of the degree to which artifacts
+  are present.
   - Increasing the number of residual layers to 12 seemed to worsen artifacts.
   - Scaling the discriminator loss by 0.5 seemed to remove some of the color
-  grading effect at the cost of extra tiling and extra color distortion at the
-  edge of light and dark patches.
-  - High-contrast, noisy images will yield the best results. Likewise, images
-  with flat coloring will yield the worst results.
+  distortion at the cost of extra tiling and extra color distortion at the edge
+  of light and dark patches.
+  - High-contrast, noisy images yield the best results. Likewise, images with
+  flat coloring yield the worst results.
 
 ## Setup
 
@@ -89,7 +89,7 @@ magick mogrify -monochrome "data/COCO_monochrome/*.jpg"
 
 ## Training
 
-To train a model, run one of the following commands:
+To train your model, run one of the following commands:
 ```
 python train.py --modified data/COCO_blur_2 --prefix blur_2 --shuffle
 python train.py --modified data/COCO_kuwahara_2 --prefix kuwahara_2 --shuffle
