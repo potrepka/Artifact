@@ -1,0 +1,7 @@
+opencv-python
+pytorch-lightning
+scikit-image
+scipy
+tensorboard
+torch
+tqdm
