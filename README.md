@@ -11,6 +11,7 @@ images from our original image set. The effects chosen are:
   - Kuwahara
   - Posterize
   - Monochrome (dither from grayscale)
+
 The model, as it is, was not found to be very effective at colorizing images.
 Therefore, we use grayscale images as the original image set when training on
 the monochrome effect.
@@ -30,13 +31,14 @@ as follows:
 Finally, once training is complete, we feed a modified image into our model to
 obtain a new (fake original) image. Feel free to make observations of artifacts
 in your output image and tune the model as you like. Common artifacts are
-tiling, light and dark patches, and color distortion. Please note:
-  - Using random pairs of images rather than associated pairs yielded better
+tiling, light and dark patches, and color distortion. Please note the following
+observations from training on the blur effect:
+  - Using random pairs of images rather than associated pairs yields better
   results. See `--shuffle` below.
   - Validation loss is not a clear indicator of the degree to which artifacts
   are present.
-  - Increasing the number of residual layers to 12 seemed to worsen artifacts.
-  - Scaling the discriminator loss by 0.5 seemed to remove some of the color
+  - Increasing the number of residual layers to 12 seems to worsen artifacts.
+  - Scaling the discriminator loss by 0.5 seems to remove some of the color
   distortion at the cost of extra tiling and extra color distortion at the edge
   of light and dark patches.
   - High-contrast, noisy images yield the best results. Likewise, images with
@@ -49,8 +51,8 @@ First, install the required dependencies:
 pip install -r requirements.txt --upgrade
 ```
 
-Once installation is complete, you can download and unzip the
-[COCO](http://images.cocodataset.org/zips/unlabeled2017.zip) dataset:
+Once installation is complete, download and unzip the 2017
+[COCO](https://cocodataset.org/) image set (19GB):
 ```
 python download.py
 python unzip.py
@@ -59,7 +61,7 @@ python unzip.py
 ## Data Processing
 
 Download [ImageMagick](https://imagemagick.org/). Please note that the commands
-below will take a very long time to complete for the full dataset.
+below will take a very long time to complete for the full set of 123,403 images.
 
 Before processing, it is highly recommended to first resize and crop the entire
 set of images:
