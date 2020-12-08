@@ -44,6 +44,28 @@ observations from training on the blur effect:
   - High-contrast, noisy images yield the best results. Likewise, images with
   flat coloring yield the worst results.
 
+## Examples
+
+Images are cropped after processing. As such, it may prove effective to apply
+reflection padding, symmetric padding, or wrap padding to an image prior to
+processing in order to reduce the effect of unwanted artifacts.
+
+### Original
+
+![Original](/examples/city_crop.png "Original")
+
+### Blur 2
+
+![Blur 2](/examples/city_blur_2_crop.png "Blur 2")
+
+### Kuwahara 2
+
+![Kuwahara 2](/examples/city_kuwahara_2_crop.png "Kuwahara 2")
+
+### Posterize 8
+
+![Posterize 8](/examples/city_posterize_8_crop.png "Posterize 8")
+
 ## Setup
 
 First, install the required dependencies:
