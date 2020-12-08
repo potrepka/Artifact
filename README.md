@@ -46,7 +46,7 @@ observations from training on the blur effect:
 
 ## Examples
 
-Images are cropped after processing. As such, it may prove effective to apply
+Images are cropped after processing. Therefore, it may prove effective to apply
 reflection padding, symmetric padding, or wrap padding to an image prior to
 processing in order to reduce the effect of unwanted artifacts.
 
