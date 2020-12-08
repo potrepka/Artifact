@@ -74,7 +74,7 @@ pip install -r requirements.txt --upgrade
 ```
 
 Once installation is complete, download and unzip the 2017
-[COCO](https://cocodataset.org/) image set (19GB):
+[COCO](https://cocodataset.org/#download) image set (19GB):
 ```
 python download.py
 python unzip.py
