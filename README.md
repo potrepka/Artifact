@@ -46,10 +46,10 @@ observations from training on the blur effect:
 
 ## Examples
 
-The images below are generated from a larger image and then cropped after
-processing. Therefore, it may prove effective to apply reflection padding,
-symmetric padding, or wrap padding to an image prior to processing in order to
-reduce the effect of unwanted artifacts.
+The images below are generated from a larger image and cropped after processing.
+Therefore, it may prove effective to apply reflection padding, symmetric
+padding, or wrap padding to an image prior to processing in order to reduce the
+effect of unwanted artifacts.
 
 ### Original
 
