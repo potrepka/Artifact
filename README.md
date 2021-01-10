@@ -10,11 +10,6 @@ images from our original image set. The effects chosen are:
   - Blur
   - Kuwahara
   - Posterize
-  - Monochrome (dither from grayscale)
-
-The model, as it is, was not found to be very effective at colorizing images.
-Therefore, we use grayscale images as the original image set when training on
-the monochrome effect.
 
 Next, we train a CycleGAN model using our modified and original image sets.
 Hyperparameters to note, which may differ from the original CycleGAN paper, are
@@ -97,9 +92,6 @@ Next, copy the images into new folders:
 cp -r data/COCO data/COCO_blur_2
 cp -r data/COCO data/COCO_kuwahara_2
 cp -r data/COCO data/COCO_posterize_8
-
-cp -r data/COCO data/COCO_gray
-cp -r data/COCO data/COCO_monochrome
 ```
 
 Lastly, apply effects to the copied images:
@@ -107,9 +99,6 @@ Lastly, apply effects to the copied images:
 magick mogrify -blur 0x2 "data/COCO_blur_2/*.jpg"
 magick mogrify -kuwahara 2 "data/COCO_kuwahara_2/*.jpg"
 magick mogrify -posterize 8 "data/COCO_posterize_8/*.jpg"
-
-magick mogrify -colorspace gray "data/COCO_gray/*.jpg"
-magick mogrify -monochrome "data/COCO_monochrome/*.jpg"
 ```
 
 ## Training
@@ -119,8 +108,6 @@ To train your model, run one of the following commands:
 python train.py --modified data/COCO_blur_2 --prefix blur_2 --shuffle
 python train.py --modified data/COCO_kuwahara_2 --prefix kuwahara_2 --shuffle
 python train.py --modified data/COCO_posterize_8 --prefix posterize_8 --shuffle
-
-python train.py --modified data/COCO_monochrome --original data/COCO_gray --prefix monochrome --shuffle
 ```
 
 Please consult the help documentation for more information:
@@ -136,8 +123,6 @@ generate a new (fake original) image:
 python evaluate.py --checkpoint checkpoints/blur_2_epoch=007.ckpt --input /PATH/TO/INPUT/IMAGE --fake
 python evaluate.py --checkpoint checkpoints/kuwahara_2_epoch=007.ckpt --input /PATH/TO/INPUT/IMAGE --fake
 python evaluate.py --checkpoint checkpoints/posterize_8_epoch=007.ckpt --input /PATH/TO/INPUT/IMAGE --fake
-
-python evaluate.py --checkpoint checkpoints/monochrome_epoch=007.ckpt --input /PATH/TO/INPUT/IMAGE --fake
 ```
 
 Additionally, you can view the parameters of your model like so:
