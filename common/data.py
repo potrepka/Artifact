@@ -1,5 +1,3 @@
 url = 'http://images.cocodataset.org/zips/unlabeled2017.zip'
-url = 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/most-beautiful-places-in-the-us-1578089758.jpg'
 file = 'data/COCO.zip'
-file = 'experiment/ok.jpg'
 directory = 'data/COCO'
